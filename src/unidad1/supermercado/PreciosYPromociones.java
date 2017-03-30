@@ -21,6 +21,7 @@ public class PreciosYPromociones {
 		return productos;
 	}
 	
+	
 	public static String [] getProductosPromoSegundaUnidad50PorCiento() {
 		String [] productosConPromo = {"YOGSER", "PILASV"}; 
 		return productosConPromo;
