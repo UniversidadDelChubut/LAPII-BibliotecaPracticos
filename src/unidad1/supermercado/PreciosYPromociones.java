@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class PreciosYPromociones {
 	
+	
 	public static String [][] getProductos() {
 		String [][] productos =
 			{
