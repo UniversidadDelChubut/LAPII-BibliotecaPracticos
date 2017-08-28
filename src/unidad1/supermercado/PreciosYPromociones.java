@@ -3,6 +3,11 @@ package unidad1.supermercado;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ * 
+ * @author sdellatorre@udc.edu.ar
+ *
+ */
 public class PreciosYPromociones {
 	
 	
