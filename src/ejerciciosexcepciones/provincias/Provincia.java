@@ -4,6 +4,12 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Represente un aprovincia de Argentina.
+ * 
+ * @author lapii-udc
+ *
+ */
 public class Provincia {
 
 	// https://es.wikipedia.org/wiki/ISO_3166-2:AR
