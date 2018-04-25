@@ -14,7 +14,10 @@ public class Provincia {
 
 	// https://es.wikipedia.org/wiki/ISO_3166-2:AR
 
+	private static Map<String, Provincia> provincias;
+	
 	static {
+		Provincia.provincias = new LinkedHashMap<String, Provincia>();
 		Provincia.provincias.put("A", new Provincia("A", "Salta", "Salta", 1215207, 155488));
 		Provincia.provincias.put("B", new Provincia("B", "Buenos Aires", "La Plata", 15594428, 307571));
 		Provincia.provincias.put("C", new Provincia("C", "Ciudad Autónoma de Buenos Aires", "-", 2891082, 202));
@@ -41,7 +44,6 @@ public class Provincia {
 		Provincia.provincias.put("Z", new Provincia("Z", "Santa Cruz", "Río Gallegos", 272524, 243943));
 	}
 	
-	private static Map<String, Provincia> provincias = new LinkedHashMap<String, Provincia>();
 	
 	private String codigo;
 	private String nombre;
