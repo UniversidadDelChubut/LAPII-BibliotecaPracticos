@@ -6,4 +6,9 @@ public class Triangulo extends Poligono {
 		
 	}
 	
+	@Override
+	public double getArea() {
+		return 0;
+	}
+	
 }
