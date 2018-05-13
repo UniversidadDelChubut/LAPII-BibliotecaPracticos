@@ -1,4 +1,4 @@
-package gui.cisterna;
+package ejerciciosswing.cisterna;
 
 /**
  * Representa una cisterna
@@ -30,7 +30,7 @@ public class Cisterna {
 		return nivelActual;
 	}
 
-	public synchronized void cargar(double metros) {
+	synchronized void cargar(double metros) {
 		if (this.nivelActual + metros <= this.capacidad) {
 			this.nivelActual += metros;
 		} else {
@@ -38,7 +38,7 @@ public class Cisterna {
 		}
 	}
 
-	public synchronized void sacar(double metros) {
+	synchronized void sacar(double metros) {
 		if (this.nivelActual - metros < 0) {
 			this.nivelActual = 0;
 		} else {

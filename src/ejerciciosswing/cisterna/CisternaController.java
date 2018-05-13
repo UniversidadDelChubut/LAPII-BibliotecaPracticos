@@ -1,4 +1,6 @@
-package gui.cisterna;
+package ejerciciosswing.cisterna;
+
+import ejerciciosswing.cisterna.CisternaListener.InformeCisterna;
 
 public class CisternaController {
 
@@ -15,6 +17,18 @@ public class CisternaController {
 	
 	public void setPotenciaBombeo(int porcentaje) {
 		this.modelo.setPotenciaBombeo(porcentaje);
+	}
+	
+	public void abrirSalida() {
+		this.modelo.abrirSalida();
+	}
+	
+	public void cerrarSalida() {
+		this.modelo.cerrarSalida();
+	}
+	
+	public InformeCisterna getInformeCisterna() {
+		return this.modelo.getInformeCisterna();
 	}
 	
 }

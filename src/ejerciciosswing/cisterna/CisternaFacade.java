@@ -1,8 +1,10 @@
-package gui.cisterna;
+package ejerciciosswing.cisterna;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import ejerciciosswing.cisterna.CisternaListener.InformeCisterna;
 
 public class CisternaFacade {
 	
@@ -93,21 +95,27 @@ public class CisternaFacade {
 					e.printStackTrace();
 				}
 				//				System.out.println(cisterna.getNivelActual());
-				CisternaListener.InformeCisterna informe = new CisternaListener.InformeCisterna();
-				
-				informe.setBombaEncendida (CisternaFacade.this.potenciaBombeo != 0);
-				informe.setCapacidadTotal (CisternaFacade.this.cisterna.getCapacidad());
-				informe.setContenido ( CisternaFacade.this.cisterna.getNivelActual());
-				informe.setFechaInforme (new Date());
-				informe.setFlujoEntrada ( CisternaFacade.this.flujoHorarioBombaEntrada * CisternaFacade.this.potenciaBombeo / 100);
-				informe.setFlujoSalida ( CisternaFacade.this.demandaMediaSalida);
-				informe.setSalidaAbierta ( ! CisternaFacade.this.salidaCerrada);
 			
+				InformeCisterna informe = CisternaFacade.this.getInformeCisterna();
 				for (CisternaListener listener: CisternaFacade.this.listeners) {
 					listener.change(informe);
 				}
 			}
 		}
+	}
+	
+	InformeCisterna getInformeCisterna() {
+		InformeCisterna informe = new CisternaListener.InformeCisterna();
+		
+		informe.setBombaEncendida (CisternaFacade.this.potenciaBombeo != 0);
+		informe.setCapacidadTotal (CisternaFacade.this.cisterna.getCapacidad());
+		informe.setContenido ( CisternaFacade.this.cisterna.getNivelActual());
+		informe.setFechaInforme (new Date());
+		informe.setFlujoEntrada ( CisternaFacade.this.flujoHorarioBombaEntrada * CisternaFacade.this.potenciaBombeo / 100);
+		informe.setFlujoSalida ( CisternaFacade.this.demandaMediaSalida);
+		informe.setSalidaAbierta ( ! CisternaFacade.this.salidaCerrada);
+		
+		return informe;
 	}
 	
 	private List <CisternaListener> listeners = new LinkedList<CisternaListener>();

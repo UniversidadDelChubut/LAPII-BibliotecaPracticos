@@ -1,4 +1,4 @@
-package gui.cisterna;
+package ejerciciosswing.cisterna;
 
 import java.util.Date;
 

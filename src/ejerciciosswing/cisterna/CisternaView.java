@@ -1,6 +1,6 @@
-package gui.cisterna;
+package ejerciciosswing.cisterna;
 
-import gui.cisterna.CisternaListener.InformeCisterna;
+import ejerciciosswing.cisterna.CisternaListener.InformeCisterna;
 
 public interface CisternaView {
 	
