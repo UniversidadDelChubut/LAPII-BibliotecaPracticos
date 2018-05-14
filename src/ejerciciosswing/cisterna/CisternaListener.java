@@ -72,11 +72,6 @@ public interface CisternaListener {
 			this.flujoSalida = flujoSalida;
 		}
 		
-		
-		
-		
-		
-		
 	}
 	
 }
