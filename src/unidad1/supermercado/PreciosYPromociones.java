@@ -14,7 +14,7 @@ public class PreciosYPromociones {
 	public static String [][] getProductos() {
 		String [][] productos =
 			{
-				{"YERP1K", "Yerba Piporé 1 Kilo", "38.45"},
+				{"YERP1K", "Yerba PiporÃ© 1 Kilo", "38.45"},
 				{"YOGSER", "Yogurth Serenito", "12.34"},
 				{"PANLAC", "Pan lactal", "52.50"},
 				{"MEDGOR", "Medialunas de grasa por unidad", "9.75"},
