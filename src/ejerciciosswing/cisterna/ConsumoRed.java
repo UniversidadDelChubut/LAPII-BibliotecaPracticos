@@ -2,8 +2,6 @@ package ejerciciosswing.cisterna;
 
 import java.util.Random;
 
-import com.sun.xml.internal.ws.api.pipe.NextAction;
-
 public class ConsumoRed {
 
 	private boolean cerrado;
@@ -48,7 +46,7 @@ public class ConsumoRed {
 					continue;
 				if (cisterna == null)
 					continue;
-				cisterna.sacar( (demandaMedia / 60) * ( rnd.nextBoolean() ? 1:-1)  * (1 + (rnd.nextDouble() /10 ))  );
+				cisterna.sacar( (demandaMedia / 60) * (1 + (( rnd.nextBoolean() ? 1:-1)  * rnd.nextDouble() /10 ))  );
 			}
 		}
 	}
