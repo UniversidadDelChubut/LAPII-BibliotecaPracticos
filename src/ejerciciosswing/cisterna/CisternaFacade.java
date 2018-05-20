@@ -9,80 +9,33 @@ import ejerciciosswing.cisterna.CisternaListener.InformeCisterna;
 public class CisternaFacade {
 	
 	private Cisterna cisterna;
-	private int flujoHorarioBombaEntrada;     // En metros cúbicos / hora
-	private int demandaMediaSalida;           // En metros cúbicos / hora
-	private double potenciaBombeo = 0;        // 0 a 100
-	private boolean salidaCerrada = false;
+	private Bomba bomba;
+	private ConsumoRed consumoRed;
 	
 	public CisternaFacade(int capacidadMaxima, int flujoHorarioBombaEntrada, int demandaMediaSalida) {
 		this.cisterna = new Cisterna(capacidadMaxima);
 		this.cisterna.cargar(this.cisterna.getCapacidad() / 2);
-		this.flujoHorarioBombaEntrada = flujoHorarioBombaEntrada;
-		this.demandaMediaSalida = demandaMediaSalida;
-		new BombaCarga().start();
-		new ConsumoFluido().start();
+		this.bomba = new Bomba(flujoHorarioBombaEntrada);
+		this.bomba.setCisterna(cisterna);
+		this.consumoRed =  new ConsumoRed(demandaMediaSalida);
+		this.consumoRed.setCisterna(cisterna);
+		
 		new Informer().start();
-		
-		
 	}
 	
 	public void setPotenciaBombeo (double porcentaje) {
-		if (porcentaje < 0  || porcentaje > 100)
-			return;
-		this.potenciaBombeo =  porcentaje;
+		this.bomba.setPorcentajePotenciaBombeo(porcentaje);
 	}
 	
 	public void cerrarSalida() {
-		this.salidaCerrada = true;
+		this.consumoRed.cerrar();
 	}
 	
 	public void abrirSalida() {
-		this.salidaCerrada = false;
+		this.consumoRed.abrir();
 	}
 	
 	
-	private int unMinuto() {
-		return 83;  // 1 h = 5 s => 1m = 0.083 s
-	}
-	
-	private class BombaCarga extends Thread {
-		
-		@Override
-		public void run() {
-			for (;;){
-				try {
-					Thread.sleep(unMinuto());
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				cisterna.cargar(flujoHorarioBombaEntrada * potenciaBombeo / 100 / 60  );
-			}
-		}
-	}
-	
-	
-	private class ConsumoFluido extends Thread {
-		
-		@Override
-		public void run() {
-			for (;;){
-				try {
-					Thread.sleep(unMinuto());
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if (!salidaCerrada) {
-					cisterna.sacar(CisternaFacade.this.demandaMediaSalida / 60);
-				}
-			}
-		}
-	}
-	
-	public static void main(String[] args) {
-		new CisternaFacade(500, 200, 100);
-	}
 	
 	private class Informer extends Thread {
 		@Override
@@ -107,13 +60,13 @@ public class CisternaFacade {
 	InformeCisterna getInformeCisterna() {
 		InformeCisterna informe = new CisternaListener.InformeCisterna();
 		
-		informe.setBombaEncendida (CisternaFacade.this.potenciaBombeo != 0);
+		informe.setBombaEncendida (bomba.isEncendida());
 		informe.setCapacidadTotal (CisternaFacade.this.cisterna.getCapacidad());
 		informe.setContenido ( CisternaFacade.this.cisterna.getNivelActual());
 		informe.setFechaInforme (new Date());
-		informe.setFlujoEntrada ( CisternaFacade.this.flujoHorarioBombaEntrada * CisternaFacade.this.potenciaBombeo / 100);
-		informe.setFlujoSalida ( CisternaFacade.this.demandaMediaSalida);
-		informe.setSalidaAbierta ( ! CisternaFacade.this.salidaCerrada);
+		informe.setFlujoEntrada ( bomba.getFlujoHorarioMaximo() * bomba.getPorcentajePotenciaBombeo() / 100);
+		informe.setFlujoSalida ( consumoRed.getDemandaMedia());
+		informe.setSalidaAbierta ( ! consumoRed.isCerrado() );
 		
 		return informe;
 	}

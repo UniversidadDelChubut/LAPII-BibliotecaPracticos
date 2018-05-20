@@ -31,6 +31,8 @@ public class Cisterna {
 	}
 
 	synchronized void cargar(double metros) {
+		System.out.println("Carga " + metros);
+		
 		if (this.nivelActual + metros <= this.capacidad) {
 			this.nivelActual += metros;
 		} else {
