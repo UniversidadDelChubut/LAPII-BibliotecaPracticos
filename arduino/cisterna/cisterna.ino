@@ -99,11 +99,13 @@ void loop() {
 void leerEntrada() {
   if (Serial.available() > 0) {
     int rByte = Serial.read();
-    //if (rByte & 0x01 == 0) {
+    if ((rByte & 1) == 0) {
       Serial.write(1);  
-    //} else {
-    //  Serial.write(2);
-    //}
+    } else {
+      Serial.write(2);
+    }
+    Serial.write(rByte & 1);
+    Serial.write(rByte);
     Serial.flush();
   }
 }
