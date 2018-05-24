@@ -1,7 +1,5 @@
 package ejerciciosswing.cisterna;
 
-import ejerciciosswing.cisterna.CisternaListener.InformeCisterna;
-
 public interface CisternaView extends CisternaListener {
 	
 	/**

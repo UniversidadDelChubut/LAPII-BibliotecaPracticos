@@ -12,7 +12,6 @@ public class Cisterna {
 								// cúblicos
 	private double nivelActual; // La cantidad de fluido contenidos en la
 								// cisterna medida en metros cúbicos
-
 	/**
 	 * 
 	 * @param capacidad

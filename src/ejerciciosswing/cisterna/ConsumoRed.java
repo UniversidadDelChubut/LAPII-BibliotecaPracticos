@@ -7,6 +7,7 @@ public class ConsumoRed {
 	private boolean cerrado;
 	private double demandaMedia;
 	private Cisterna cisterna;
+	private double demandaReal;
 	
 	public ConsumoRed(double demandaMedia) {
 		this.demandaMedia = demandaMedia;
@@ -33,6 +34,10 @@ public class ConsumoRed {
 	public boolean isCerrado() {
 		return cerrado;
 	}
+	
+	public double getDemandaReal() {
+		return demandaReal;
+	}
 
 	private class ConsumoFluido extends Thread {
 		
@@ -46,9 +51,9 @@ public class ConsumoRed {
 					continue;
 				if (cisterna == null)
 					continue;
-				double cantidadSalida = ((double)demandaMedia / 60) * (1 + (( rnd.nextBoolean() ? 1:-1)  * rnd.nextDouble() /10 )) ;
-				System.out.println("cantidadSalida " + cantidadSalida); 
-				cisterna.sacar( cantidadSalida );
+				demandaReal = ((double)demandaMedia / 60) * (1 + (( rnd.nextBoolean() ? 1:-1)  * rnd.nextDouble() /10 )) ;
+				
+				cisterna.sacar( demandaReal );
 			}
 		}
 	}
