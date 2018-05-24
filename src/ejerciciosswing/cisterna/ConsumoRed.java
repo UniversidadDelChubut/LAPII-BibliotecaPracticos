@@ -46,7 +46,9 @@ public class ConsumoRed {
 					continue;
 				if (cisterna == null)
 					continue;
-				cisterna.sacar( (demandaMedia / 60) * (1 + (( rnd.nextBoolean() ? 1:-1)  * rnd.nextDouble() /10 ))  );
+				double cantidadSalida = ((double)demandaMedia / 60) * (1 + (( rnd.nextBoolean() ? 1:-1)  * rnd.nextDouble() /10 )) ;
+				System.out.println("cantidadSalida " + cantidadSalida); 
+				cisterna.sacar( cantidadSalida );
 			}
 		}
 	}

@@ -9,7 +9,9 @@ public class CisternaController {
 	
 	public CisternaController(CisternaFacade modelo, CisternaView vista) {
 		this.modelo = modelo;
+		
 		this.vista = vista;
+		this.modelo.addCisternaListener(vista);
 		this.vista.setController(this);
 		this.vista.lanzar();
 		

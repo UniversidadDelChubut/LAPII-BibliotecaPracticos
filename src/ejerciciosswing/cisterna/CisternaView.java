@@ -2,7 +2,7 @@ package ejerciciosswing.cisterna;
 
 import ejerciciosswing.cisterna.CisternaListener.InformeCisterna;
 
-public interface CisternaView {
+public interface CisternaView extends CisternaListener {
 	
 	/**
 	 * A través de este método se da a conocer el controlador a la vista.  
