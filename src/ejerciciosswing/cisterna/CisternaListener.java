@@ -40,6 +40,12 @@ public interface CisternaListener {
 			return flujoEntrada;
 		}
 
+		/**
+		 * El flujo de salida en metros cúbicos por minuto. 
+		 * Informa la cantida de metros{ubicos consumidos
+		 * durante el último munito.  
+		 * @return
+		 */
 		public double getFlujoSalida() {
 			return flujoSalida;
 		}

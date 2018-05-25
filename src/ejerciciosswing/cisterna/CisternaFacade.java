@@ -65,7 +65,7 @@ public class CisternaFacade {
 		informe.setContenido ( CisternaFacade.this.cisterna.getNivelActual());
 		informe.setFechaInforme (new Date());
 		informe.setFlujoEntrada ( bomba.getFlujoHorarioMaximo() * bomba.getPorcentajePotenciaBombeo() / 100);
-		informe.setFlujoSalida ( consumoRed.getDemandaReal() * 60);
+		informe.setFlujoSalida ( consumoRed.getDemandaReal());
 		informe.setSalidaAbierta ( ! consumoRed.isCerrado() );
 		
 		return informe;
