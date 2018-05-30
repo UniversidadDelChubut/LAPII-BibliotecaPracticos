@@ -10,7 +10,7 @@
 #define LED_TIEMPO  13
 #define LED_BOMBA   10
 #define LED_REBALSA 11
-
+#define LED_NIVEL    9
 byte buffer [7];
 int pos = 0;
 
@@ -40,7 +40,8 @@ void setup() {
     pinMode(LED_TIEMPO, OUTPUT);
     pinMode(LED_BOMBA, OUTPUT);
     pinMode(LED_REBALSA, OUTPUT);
-    
+    pinMode(LED_NIVEL, OUTPUT);
+    analogWrite(LED_NIVEL, 255);
 }
 
 
