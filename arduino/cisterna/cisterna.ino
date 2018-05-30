@@ -44,28 +44,36 @@ void setup() {
 }
 
 
+void simularConControlExterno() {
+  
+}
+
+void simularSinControlExterno() {
+    int sensorBombaValue = analogRead(sensorBombaPin);
+    porcentajePotenciaBomba = (int)((double)sensorBombaValue / 10); 
+}
+
+
 void loop() {
 
     leerEntrada();
 
     int sensorConsumoValue = analogRead(sensorConsumoPin);
-    int sensorBombaValue = analogRead(sensorBombaPin);
 
     double porcentajeAumentoDemanda = ((double)sensorConsumoValue / 100);
     egresoMinuto = (flujoSalida * (1 + porcentajeAumentoDemanda / 100)) / 60;
 
 
     if (controlExternoActivado == FALSE) {
-      porcentajePotenciaBomba = (int)((double)sensorBombaValue / 10);
+      simularSinControlExterno();
     } else {
-      porcentajePotenciaBomba = 100;
+      simularConControlExterno();
     }
-
+ 
     ingresoMinuto = (flujoEntrada * (double)porcentajePotenciaBomba /(double)100)/ (double)60;
-
-    if(bombaActivada == TRUE) { 
-      contenido = contenido + ingresoMinuto;
-    }
+    
+    contenido = contenido + ingresoMinuto;
+    
 
     
     rebalsa = FALSE;
@@ -74,9 +82,6 @@ void loop() {
       contenido = capacidadTotal;
       rebalsa = TRUE;
 
-      if (controlExternoActivado == FALSE) {
-          bombaActivada = FALSE;
-      }
     }
     
     contenido = contenido - egresoMinuto;
@@ -92,10 +97,10 @@ void loop() {
     else
         digitalWrite(LED_REBALSA, LOW);
 
-    if (bombaActivada == TRUE)
-        digitalWrite(LED_BOMBA, HIGH);
-    else
+    if (ingresoMinuto == 0)
         digitalWrite(LED_BOMBA, LOW);
+    else
+        digitalWrite(LED_BOMBA, HIGH);
 
         
     // put your main code here, to run repeatedly:
@@ -189,6 +194,8 @@ void parsearMensajeTipo_1() {
     flujoSalida = salida;
     capacidadTotal = capacidad;
     contenido = capacidad / 2;
+
+    controlExternoActivado = TRUE;
 
     Serial.print("RCV OK MSGTYPE:1");
     Serial.print(" capacidad:");
