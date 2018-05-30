@@ -41,7 +41,7 @@ void setup() {
     pinMode(LED_BOMBA, OUTPUT);
     pinMode(LED_REBALSA, OUTPUT);
     pinMode(LED_NIVEL, OUTPUT);
-    analogWrite(LED_NIVEL, 255);
+    analogWrite(LED_NIVEL, 25);
 }
 
 
@@ -102,6 +102,15 @@ void loop() {
         digitalWrite(LED_BOMBA, LOW);
     else
         digitalWrite(LED_BOMBA, HIGH);
+
+
+    double porcentaje = ((double)contenido) / capacidadTotal;
+
+    //if (porcentaje < 0.95) {
+      analogWrite(LED_NIVEL, 255 * porcentaje);
+    //} else {
+    //  
+    //}
 
         
     // put your main code here, to run repeatedly:
