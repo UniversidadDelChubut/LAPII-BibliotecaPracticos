@@ -1,4 +1,4 @@
-package unidad1.supermercado;
+package unidad2.supermercado;
 
 import java.util.Date;
 import java.util.Random;
@@ -9,24 +9,6 @@ import java.util.Random;
  *
  */
 public class PreciosYPromociones {
-	
-	
-	public static String [][] getProductos() {
-		String [][] productos =
-			{
-				{"YERP1K", "Yerba Piporé 1 Kilo", "38.45"},
-				{"YOGSER", "Yogurth Serenito", "12.34"},
-				{"PANLAC", "Pan lactal", "52.50"},
-				{"MEDGOR", "Medialunas de grasa por unidad", "9.75"},
-				{"PANCAS", "Pan Casero", "25.34"},
-				{"PAPABL", "Papa Blanca por kilo", "12.00"},
-				{"CEBOLL", "Cebolla por kilo", "14.00"},
-				{"ZUKINI", "Zuccini por kilo", "34.00"},
-				{"PILASV", "Pilas Varta", "65.00"},
-			}; 
-		return productos;
-	}
-	
 	
 	public static String [] getProductosPromoSegundaUnidad50PorCiento() {
 		String [] productosConPromo = {"YOGSER", "PILASV"}; 
